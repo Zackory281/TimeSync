@@ -10,9 +10,17 @@ import Foundation
 
 class Timer{
     var counting:Bool = false
+    var delegate:TimerDelegate
+    var startingTime:Date?
+    var lappedTimes:[Date]?
     
-    init(){
+    init(delegate:TimerDelegate){
         print("Timer initiated")
+        self.delegate = delegate
+    }
+    
+    func start(){
+        startingTime = Date()
     }
     
     func toggle(){
@@ -22,4 +30,8 @@ class Timer{
     func lap(){
         print("Timer lapped")
     }
+}
+
+protocol TimerDelegate {
+    func undateTime(time:Int);
 }
