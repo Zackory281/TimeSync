@@ -8,14 +8,17 @@
 
 import UIKit
 
-class TimerViewController: UIViewController {
+class TimerViewController: UIViewController, TimerDelegate{
+    
+    func undateTime(time: Int) {
+    }
     
     var timer:Timer?
     
     @IBOutlet weak var timeLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        timer = Timer()
+        timer = Timer(delegate:self)
     }
     @IBAction func lap(_ sender: Any) {
         timer?.lap() ?? print("timer not initiated?")
