@@ -16,6 +16,7 @@
 		F273C4B31FB7E4EC00A72A1C /* TimeSyncUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F273C4B21FB7E4EC00A72A1C /* TimeSyncUITests.swift */; };
 		F273C4C11FB7E62500A72A1C /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F273C4C01FB7E62500A72A1C /* TimerViewController.swift */; };
 		F273C4C41FB7E64700A72A1C /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F273C4C31FB7E64700A72A1C /* TimerModel.swift */; };
+		F2A1646E1FB941EC007F8C31 /* TimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A1646D1FB941EC007F8C31 /* TimeTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		F273C4B41FB7E4EC00A72A1C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F273C4C01FB7E62500A72A1C /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		F273C4C31FB7E64700A72A1C /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
+		F2A1646D1FB941EC007F8C31 /* TimeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			children = (
 				F273C4C01FB7E62500A72A1C /* TimerViewController.swift */,
 				F273C4C31FB7E64700A72A1C /* TimerModel.swift */,
+				F2A1646D1FB941EC007F8C31 /* TimeTableViewCell.swift */,
 			);
 			path = Timer;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 				F273C4C41FB7E64700A72A1C /* TimerModel.swift in Sources */,
 				F273C4C11FB7E62500A72A1C /* TimerViewController.swift in Sources */,
 				F273C4931FB7E4EC00A72A1C /* AppDelegate.swift in Sources */,
+				F2A1646E1FB941EC007F8C31 /* TimeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

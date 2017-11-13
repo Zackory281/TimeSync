@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Courier.ttc">
+            <string>Courier</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Timer View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -18,43 +23,82 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8XS-Yi-BtP">
-                                <rect key="frame" x="120" y="309" width="134" height="48"/>
+                                <rect key="frame" x="124" y="309" width="126" height="48"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOP-uz-jX7">
-                                        <rect key="frame" x="0.0" y="0.0" width="62" height="48"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="58" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Start"/>
+                                        <state key="normal" title="start"/>
                                         <connections>
-                                            <action selector="toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cZY-z2-kHA"/>
+                                            <action selector="toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GeJ-co-7ho"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeL-yh-74K">
-                                        <rect key="frame" x="72" y="0.0" width="62" height="48"/>
+                                        <rect key="frame" x="68" y="0.0" width="58" height="48"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Lap"/>
+                                        <state key="normal" title="lap"/>
                                         <connections>
-                                            <action selector="lap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zmv-pH-GNK"/>
+                                            <action selector="toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bsg-Ft-qmD"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[time]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xw-ab-uKh">
-                                <rect key="frame" x="131" y="245" width="113.5" height="54"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                                <rect key="frame" x="98" y="249" width="180.5" height="50"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aG8-fB-feV">
+                                <rect key="frame" x="0.0" y="367" width="375" height="300"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timeCell" id="bvV-rb-3Iv" customClass="TimeTableViewCell" customModule="TimeSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bvV-rb-3Iv" id="dJN-cW-PL5" customClass="tab">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeR-jv-0Ht">
+                                                    <rect key="frame" x="8" y="8" width="359" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="xeR-jv-0Ht" firstAttribute="leading" secondItem="dJN-cW-PL5" secondAttribute="leading" constant="8" id="5vc-Ni-SPM"/>
+                                                <constraint firstAttribute="bottom" secondItem="xeR-jv-0Ht" secondAttribute="bottom" constant="8" id="6PP-hO-Euv"/>
+                                                <constraint firstAttribute="trailing" secondItem="xeR-jv-0Ht" secondAttribute="trailing" constant="8" id="duL-Ko-4e4"/>
+                                                <constraint firstItem="xeR-jv-0Ht" firstAttribute="top" secondItem="dJN-cW-PL5" secondAttribute="top" constant="8" id="n3E-6s-Owl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="label" destination="xeR-jv-0Ht" id="c6S-zi-bL8"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="luW-bD-AMe"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8XS-Yi-BtP" firstAttribute="top" secondItem="7xw-ab-uKh" secondAttribute="bottom" constant="10" id="2Te-wS-E2D"/>
+                            <constraint firstItem="aG8-fB-feV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JDG-7k-Oll"/>
+                            <constraint firstItem="aG8-fB-feV" firstAttribute="top" secondItem="8XS-Yi-BtP" secondAttribute="bottom" constant="10" id="Y9B-5g-cGJ"/>
                             <constraint firstItem="7xw-ab-uKh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YN6-MY-RQG"/>
+                            <constraint firstItem="aG8-fB-feV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="eMq-5c-tLM"/>
                             <constraint firstItem="8XS-Yi-BtP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eXB-1X-gBW"/>
+                            <constraint firstItem="aG8-fB-feV" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="gkf-WT-0Uq"/>
                             <constraint firstItem="8XS-Yi-BtP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hzw-dB-e5R"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="lapButton" destination="aeL-yh-74K" id="6aX-gu-Ye3"/>
                         <outlet property="timeLabel" destination="7xw-ab-uKh" id="NsD-Iy-DR8"/>
                     </connections>
                 </viewController>

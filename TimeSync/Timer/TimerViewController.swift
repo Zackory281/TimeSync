@@ -8,23 +8,53 @@
 
 import UIKit
 
-class TimerViewController: UIViewController, TimerDelegate{
+class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate{
     
-    func undateTime(time: Int) {
+    var tableView:UITableView?
+    
+    func reloadTable() {
+        tableView?.reloadData()
+        tableView?.endUpdates()
     }
     
-    var timer:Timer?
+    func enableLap(enabled: Bool) {
+        lapButton!.isEnabled = enabled
+        print("lap button is \(enabled) enabled")
+    }
     
+    func undateTime(time: Double) {
+        timeLabel.text? = String((time*100.0).rounded()/100.0)
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.tableView = tableView
+        return timer?.lappedTimes.count ?? 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "timeCell")! as! TimeTableViewCell
+        cell.label!.text! = String(describing:(timer?.lappedTimes[indexPath.row])!)
+        return cell
+    }
+    
+    @IBOutlet weak var lapButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
+    var timer:TimerModel?
+    
+    @IBAction func toggle(_ sender: UIButton) {
+        let text = String(describing: sender.titleLabel!.text!)
+        print("this button says: \(text)");
+        actions[text]?(timer!)()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        timer = Timer(delegate:self)
-    }
-    @IBAction func lap(_ sender: Any) {
-        timer?.lap() ?? print("timer not initiated?")
-    }
-    @IBAction func toggle(_ sender: Any) {
-        timer?.toggle() ?? print("timer not initiated?")
+        timer = TimerModel(delegate:self)
+        tableView?.dataSource = self
     }
     
     override func didReceiveMemoryWarning() {
