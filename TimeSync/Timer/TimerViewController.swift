@@ -18,8 +18,7 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
     }
     
     func enableLap(enabled: Bool) {
-        lapButton!.isEnabled = enabled
-        print("lap button is \(enabled) enabled")
+        leftButton!.isEnabled = enabled
     }
     
     func undateTime(time: Double) {
@@ -37,11 +36,12 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "timeCell")! as! TimeTableViewCell
-        cell.label!.text! = String(describing:(timer?.lappedTimes[indexPath.row])!)
+        cell.label!.text! = String(describing:(timer?.lappedTimes[indexPath.row])!.str)
         return cell
     }
     
-    @IBOutlet weak var lapButton: UIButton!
+    @IBOutlet weak var leftButton: UIButton!
+    @IBOutlet weak var rightButton: UIButton!
     @IBOutlet weak var timeLabel: UILabel!
     var timer:TimerModel?
     
@@ -49,6 +49,26 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
         let text = String(describing: sender.titleLabel!.text!)
         print("this button says: \(text)");
         actions[text]?(timer!)()
+        var lapAva:Bool = true
+        if(text=="start"){
+            lapAva = true
+            leftButton.setTitle("lap", for: .normal)
+            rightButton.setTitle("stop", for: .normal)
+        }else if(text=="stop"){
+            leftButton.setTitle("reset", for: .normal)
+            rightButton.setTitle("resume", for: .normal)
+        }else if(text=="reset"){
+            lapAva = true
+            leftButton.setTitle("lap", for: .normal)
+            rightButton.setTitle("start", for: .normal)
+        }else if(text=="resume"){
+            lapAva = true
+            leftButton.setTitle("lap", for: .normal)
+            rightButton.setTitle("stop", for: .normal)
+        }
+        if(lapAva){
+            leftButton.isEnabled = (timer?.canLap)!
+        }
     }
     
     override func viewDidLoad() {

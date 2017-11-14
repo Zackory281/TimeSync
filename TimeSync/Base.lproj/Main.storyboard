@@ -22,33 +22,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="8XS-Yi-BtP">
-                                <rect key="frame" x="124" y="309" width="126" height="48"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOP-uz-jX7">
-                                        <rect key="frame" x="0.0" y="0.0" width="58" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="start"/>
-                                        <connections>
-                                            <action selector="toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GeJ-co-7ho"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeL-yh-74K">
-                                        <rect key="frame" x="68" y="0.0" width="58" height="48"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="lap"/>
-                                        <connections>
-                                            <action selector="toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bsg-Ft-qmD"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[time]" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xw-ab-uKh">
                                 <rect key="frame" x="98" y="249" width="180.5" height="50"/>
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="N9A-K4-e1z">
+                                <rect key="frame" x="50" y="309" width="275" height="48"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOP-uz-jX7">
+                                        <rect key="frame" x="0.0" y="0.0" width="137.5" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="lap"/>
+                                        <connections>
+                                            <action selector="toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GeJ-co-7ho"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeL-yh-74K">
+                                        <rect key="frame" x="137.5" y="0.0" width="137.5" height="48"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="start"/>
+                                        <connections>
+                                            <action selector="toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="bsg-Ft-qmD"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="aG8-fB-feV">
                                 <rect key="frame" x="0.0" y="367" width="375" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -57,7 +57,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bvV-rb-3Iv" id="dJN-cW-PL5" customClass="tab">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeR-jv-0Ht">
@@ -86,19 +86,21 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="8XS-Yi-BtP" firstAttribute="top" secondItem="7xw-ab-uKh" secondAttribute="bottom" constant="10" id="2Te-wS-E2D"/>
                             <constraint firstItem="aG8-fB-feV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JDG-7k-Oll"/>
-                            <constraint firstItem="aG8-fB-feV" firstAttribute="top" secondItem="8XS-Yi-BtP" secondAttribute="bottom" constant="10" id="Y9B-5g-cGJ"/>
+                            <constraint firstItem="aG8-fB-feV" firstAttribute="top" secondItem="N9A-K4-e1z" secondAttribute="bottom" constant="10" id="PrM-oA-4x9"/>
                             <constraint firstItem="7xw-ab-uKh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YN6-MY-RQG"/>
+                            <constraint firstItem="N9A-K4-e1z" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="a7D-sa-DdK"/>
                             <constraint firstItem="aG8-fB-feV" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="eMq-5c-tLM"/>
-                            <constraint firstItem="8XS-Yi-BtP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eXB-1X-gBW"/>
+                            <constraint firstItem="N9A-K4-e1z" firstAttribute="top" secondItem="7xw-ab-uKh" secondAttribute="bottom" constant="10" id="eeT-iu-lgv"/>
                             <constraint firstItem="aG8-fB-feV" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="gkf-WT-0Uq"/>
-                            <constraint firstItem="8XS-Yi-BtP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hzw-dB-e5R"/>
+                            <constraint firstItem="N9A-K4-e1z" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="50" id="pWB-tf-zR7"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="N9A-K4-e1z" secondAttribute="trailing" constant="50" id="yAw-Jw-f0d"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="lapButton" destination="aeL-yh-74K" id="6aX-gu-Ye3"/>
+                        <outlet property="leftButton" destination="MOP-uz-jX7" id="cMZ-gF-voM"/>
+                        <outlet property="rightButton" destination="aeL-yh-74K" id="jHG-39-Tse"/>
                         <outlet property="timeLabel" destination="7xw-ab-uKh" id="NsD-Iy-DR8"/>
                     </connections>
                 </viewController>
