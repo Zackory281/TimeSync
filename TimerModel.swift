@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 let actions:[String : (TimerModel)->()->Void] = [
     "start":TimerModel.start,
@@ -22,14 +23,15 @@ struct Lap {
     let lappedTime:Date!
     let interval:TimeInterval
     let str:String
+    var lapColor:UIColor = UIColor.black
     
     init(start:Date, lap:Date) {
         self.startingTime = start
         self.lappedTime = lap
         interval = lappedTime.timeIntervalSince(start)
-        let seconds = uint(interval * 100.0) % 60
+        let seconds = uint(interval * 60.0) % 60
         let mins = uint(interval) % 60
-        let hours = uint(interval / 100.0) % 60
+        let hours = uint(interval / 60) % 60
         str = "\(hours):\(mins).\(seconds)"
     }
     
@@ -43,17 +45,19 @@ class TimerModel{
     var startingTime:Date?
     var lapStartTime:Date?
     var offsetSeconds:TimeInterval?
+    var lapOffsetSeconds:TimeInterval?
     var lappedTimes:[Lap]! = []
     var timer:Timer?
+    var edgeTimes:[Lap] = []
     
     init(delegate:TimerDelegate){
-        print("Timer initiated")
         self.delegate = delegate
         delegate.enableLap(enabled: false)
     }
     
     @objc func updateTime(){
-        self.delegate.undateTime(time: Double((Date().timeIntervalSince(self.startingTime!))))
+        self.delegate.updateTime(time: (Date().timeIntervalSince(self.startingTime!)))
+        self.delegate.updateTime(time: String(((Date().timeIntervalSince(self.startingTime!))*100.0).rounded()/100.0))
     }
     
     func start(){
@@ -61,6 +65,7 @@ class TimerModel{
         RunLoop.main.add(timer!, forMode: .commonModes)
         startingTime = Date()
         lapStartTime = Date()
+        lapOffsetSeconds = 0.0
         timing = true
         canLap = true
     }
@@ -69,7 +74,8 @@ class TimerModel{
         self.timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: (#selector(self.updateTime)), userInfo: nil, repeats: true)
         RunLoop.main.add(timer!, forMode: .commonModes)
         startingTime = Date(timeIntervalSinceNow: offsetSeconds!)
-        lapStartTime = Date()
+        lapStartTime = Date(timeIntervalSinceNow: lapOffsetSeconds!)
+        lapOffsetSeconds = 0.0
         timing = true
     }
     
@@ -82,23 +88,43 @@ class TimerModel{
     func stop(){
         self.timer?.invalidate()
         offsetSeconds = startingTime?.timeIntervalSinceNow
+        lapOffsetSeconds = lapStartTime?.timeIntervalSinceNow
         timing = false
-        print("Timer stopped")
     }
     
     func lap(){
-        lappedTimes?.insert(Lap(start:lapStartTime!, lap:Date()), at: 0)
+        var newLap = Lap(start:lapStartTime!, lap:Date())
+        if(edgeTimes.count == 0){
+            edgeTimes.append(newLap)
+        }else if(edgeTimes.count == 1){
+            if(edgeTimes[0].interval > newLap.interval){
+                newLap.lapColor = UIColor.green
+                edgeTimes.insert(newLap,at: 0)
+            }else{
+                newLap.lapColor = UIColor.red
+                edgeTimes.append(newLap)
+            }
+        }else if(edgeTimes[0].interval > newLap.interval){
+            edgeTimes[0] = newLap
+            newLap.lapColor = UIColor.green
+        }else if(edgeTimes[1].interval < newLap.interval){
+            edgeTimes[1] = newLap
+            newLap.lapColor = UIColor.red
+        }
         lapStartTime = Date()
+        offsetSeconds = 0.0
+        lappedTimes?.insert(newLap, at: 0)
+        newLap.lapColor = UIColor.green
         delegate.reloadTable()
     }
     
     func toggle(action:String){
-        print("Timer toggled")
     }
 }
 
 protocol TimerDelegate {
-    func undateTime(time:Double);
+    func updateTime(time:String);
+    func updateTime(time:Double);
     func enableLap(enabled:Bool);
     func reloadTable();
 }
