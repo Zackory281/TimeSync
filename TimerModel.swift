@@ -29,12 +29,17 @@ struct Lap {
         self.startingTime = start
         self.lappedTime = lap
         interval = lappedTime.timeIntervalSince(start)
-        let seconds = uint(interval * 60.0) % 60
-        let mins = uint(interval) % 60
-        let hours = uint(interval / 60) % 60
-        str = "\(hours):\(mins).\(seconds)"
+        str = getFormattedString(interval: interval)
     }
     
+}
+
+func getFormattedString(interval:Double) -> String{
+    let str = String(format: "%02d:%02d.%02d", arguments: [uint(interval / 60) % 60, uint(interval) % 60, uint(interval * 60.0) % 60])
+    let mins = String(uint(interval) % 60)
+    let hours = String(uint(interval / 60) % 60)
+    //let stsr = "\(hours):\(mins).\(seconds)"
+    return str
 }
 
 class TimerModel{
@@ -57,7 +62,7 @@ class TimerModel{
     
     @objc func updateTime(){
         self.delegate.updateTime(time: (Date().timeIntervalSince(self.startingTime!)))
-        self.delegate.updateTime(time: String(((Date().timeIntervalSince(self.startingTime!))*100.0).rounded()/100.0))
+        self.delegate.updateTime(time: getFormattedString(interval: Date().timeIntervalSince(self.startingTime!)))
     }
     
     func start(){
