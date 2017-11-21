@@ -10,6 +10,7 @@
 		B7BACB8D1EFA56D20959D28E /* Pods_TimeSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 486117A712013A59212B2A7B /* Pods_TimeSync.framework */; };
 		BB2D7D468D584B4CF9A32C35 /* Pods_TimeSyncTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A619C30D3EC2179BF461DDA9 /* Pods_TimeSyncTests.framework */; };
 		BB371CD18055B26C5FE8BB77 /* Pods_TimeSyncUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22D89BA570AB2A6C2526084E /* Pods_TimeSyncUITests.framework */; };
+		F23F44D71FC33E3200486773 /* TimeClockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F23F44D61FC33E3200486773 /* TimeClockView.swift */; };
 		F269896A1FC2027700AA0FF3 /* TimeClockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F26989691FC2027700AA0FF3 /* TimeClockViewController.swift */; };
 		F273C4931FB7E4EC00A72A1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F273C4921FB7E4EC00A72A1C /* AppDelegate.swift */; };
 		F273C4951FB7E4EC00A72A1C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F273C4941FB7E4EC00A72A1C /* ViewController.swift */; };
@@ -53,6 +54,7 @@
 		A619C30D3EC2179BF461DDA9 /* Pods_TimeSyncTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TimeSyncTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF33B024939B08FA646A5234 /* Pods-TimeSync.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSync.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSync/Pods-TimeSync.debug.xcconfig"; sourceTree = "<group>"; };
 		DE81409C178B62F3B916AF1A /* Pods-TimeSyncUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSyncUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSyncUITests/Pods-TimeSyncUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F23F44D61FC33E3200486773 /* TimeClockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeClockView.swift; sourceTree = "<group>"; };
 		F26989691FC2027700AA0FF3 /* TimeClockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeClockViewController.swift; sourceTree = "<group>"; };
 		F273C48F1FB7E4EC00A72A1C /* TimeSync.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TimeSync.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F273C4921FB7E4EC00A72A1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				F2AAECF81FC1486900DF2B4C /* EmbeddedViewControllers */,
+				F23F44D61FC33E3200486773 /* TimeClockView.swift */,
 				F273C4C01FB7E62500A72A1C /* TimerViewController.swift */,
 				F2A1646D1FB941EC007F8C31 /* TimeTableViewCell.swift */,
 			);
@@ -522,6 +525,7 @@
 				F273C4C11FB7E62500A72A1C /* TimerViewController.swift in Sources */,
 				F273C4931FB7E4EC00A72A1C /* AppDelegate.swift in Sources */,
 				F2AAECFA1FC1488B00DF2B4C /* TimeLabelViewController.swift in Sources */,
+				F23F44D71FC33E3200486773 /* TimeClockView.swift in Sources */,
 				F2A1646E1FB941EC007F8C31 /* TimeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

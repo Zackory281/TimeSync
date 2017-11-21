@@ -36,9 +36,6 @@ struct Lap {
 
 func getFormattedString(interval:Double) -> String{
     let str = String(format: "%02d:%02d.%02d", arguments: [uint(interval / 60) % 60, uint(interval) % 60, uint(interval * 60.0) % 60])
-    let mins = String(uint(interval) % 60)
-    let hours = String(uint(interval / 60) % 60)
-    //let stsr = "\(hours):\(mins).\(seconds)"
     return str
 }
 

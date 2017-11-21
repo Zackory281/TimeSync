@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -139,7 +140,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="179"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The clock label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJN-aG-Rjf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DA!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJN-aG-Rjf">
                                 <rect key="frame" x="16" y="21.5" width="343" height="137"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="100"/>
                                 <nil key="textColor"/>
@@ -168,12 +169,12 @@
         <scene sceneID="imp-Nh-lVp">
             <objects>
                 <viewController storyboardIdentifier="clockVisual" id="pZw-Cx-azZ" customClass="TimeClockViewController" customModule="TimeSync" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NjY-wX-AaY" customClass="UIScrollView">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="200"/>
+                    <view key="view" contentMode="scaleToFill" id="NjY-wX-AaY" customClass="TimeClockView" customModule="TimeSync" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The clock visual" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHO-5c-oeV">
-                                <rect key="frame" x="138.5" y="90" width="123" height="21"/>
+                                <rect key="frame" x="126" y="177" width="123" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -186,14 +187,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Pbc-QV-k4M"/>
                     </view>
-                    <size key="freeformSize" width="400" height="200"/>
+                    <size key="freeformSize" width="375" height="375"/>
                     <connections>
                         <outlet property="label" destination="aHO-5c-oeV" id="NJS-MS-B3I"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7H6-ZP-H8r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1603" y="343"/>
+            <point key="canvasLocation" x="1595" y="421"/>
         </scene>
     </scenes>
 </document>

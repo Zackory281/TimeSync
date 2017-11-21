@@ -1,0 +1,6 @@
+framework module Pods_TimeSyncTests {
+  umbrella header "Pods-TimeSyncTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
