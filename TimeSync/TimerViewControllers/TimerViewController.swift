@@ -45,14 +45,17 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.tableView = tableView
-        return timer?.lappedTimes.count ?? 3
+        return timer?.userActions.count ?? 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "timeCell")! as! TimeTableViewCell
-        let lap = (timer?.lappedTimes[indexPath.row])!
-        cell.label!.text! = String(describing:lap.str)
-        cell.label!.textColor = lap.lapColor
+        let lap = (timer?.userActions[indexPath.row])!
+        let string = NSMutableAttributedString(string: lap.str)
+        string.addAttribute(.kern, value: 1.0, range: NSRange(location: 0, length: lap.str.count))
+        cell.timeLabel!.attributedText = string
+        cell.timeLabel!.textColor = lap.lapColor
+        cell.nameLabel!.text = lap.user
         return cell
     }
     
@@ -62,8 +65,7 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
     
     @IBAction func toggle(_ sender: UIButton) {
         let text = String(describing: sender.titleLabel!.text!)
-        print("this button says: \(text)");
-        actions[text]?(timer!)()
+        timer!.act(action: (actionLabel[text])!, time: Date())
         var lapAva:Bool = true
         if(text=="start"){
             lapAva = true

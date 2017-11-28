@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,29 +35,42 @@
                                 <rect key="frame" x="0.0" y="439" width="375" height="228"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timeCell" id="bvV-rb-3Iv" customClass="TimeTableViewCell" customModule="TimeSync" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="timeCell" rowHeight="40" id="bvV-rb-3Iv" customClass="TimeTableViewCell" customModule="TimeSync" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bvV-rb-3Iv" id="dJN-cW-PL5">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="39.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeR-jv-0Ht">
-                                                    <rect key="frame" x="8" y="8" width="359" height="28"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:32:02" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xeR-jv-0Ht">
+                                                    <rect key="frame" x="247" y="8" width="120" height="23.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="120" id="0zx-6n-9W6"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nUl-ts-447">
+                                                    <rect key="frame" x="15" y="3" width="224" height="36.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="xeR-jv-0Ht" firstAttribute="leading" secondItem="dJN-cW-PL5" secondAttribute="leading" constant="8" id="5vc-Ni-SPM"/>
+                                                <constraint firstItem="nUl-ts-447" firstAttribute="top" secondItem="dJN-cW-PL5" secondAttribute="top" constant="3" id="5cr-jX-9JS"/>
                                                 <constraint firstAttribute="bottom" secondItem="xeR-jv-0Ht" secondAttribute="bottom" constant="8" id="6PP-hO-Euv"/>
+                                                <constraint firstAttribute="bottom" secondItem="nUl-ts-447" secondAttribute="bottom" id="U15-5m-k96"/>
+                                                <constraint firstItem="nUl-ts-447" firstAttribute="leading" secondItem="dJN-cW-PL5" secondAttribute="leadingMargin" id="cHG-95-mXl"/>
                                                 <constraint firstAttribute="trailing" secondItem="xeR-jv-0Ht" secondAttribute="trailing" constant="8" id="duL-Ko-4e4"/>
                                                 <constraint firstItem="xeR-jv-0Ht" firstAttribute="top" secondItem="dJN-cW-PL5" secondAttribute="top" constant="8" id="n3E-6s-Owl"/>
+                                                <constraint firstItem="xeR-jv-0Ht" firstAttribute="leading" secondItem="nUl-ts-447" secondAttribute="trailing" constant="8" id="o5t-Om-GF1"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="label" destination="xeR-jv-0Ht" id="c6S-zi-bL8"/>
+                                            <outlet property="nameLabel" destination="nUl-ts-447" id="8gt-Q9-stT"/>
+                                            <outlet property="timeLabel" destination="xeR-jv-0Ht" id="c6S-zi-bL8"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -169,32 +183,43 @@
         <scene sceneID="imp-Nh-lVp">
             <objects>
                 <viewController storyboardIdentifier="clockVisual" id="pZw-Cx-azZ" customClass="TimeClockViewController" customModule="TimeSync" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="NjY-wX-AaY" customClass="TimeClockView" customModule="TimeSync" customModuleProvider="target">
+                    <view key="view" contentMode="scaleToFill" id="j26-kg-gXo" customClass="TimeClockView" customModule="TimeSync" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The clock visual" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aHO-5c-oeV">
-                                <rect key="frame" x="126" y="177" width="123" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecO-Fk-BI3">
+                                <rect key="frame" x="166" y="177" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="aDG-N6-Dnq"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ky-Fb-HYH" customClass="TimeNeedleView" customModule="TimeSync" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="aHO-5c-oeV" firstAttribute="centerX" secondItem="NjY-wX-AaY" secondAttribute="centerX" id="f9P-EF-qFL"/>
-                            <constraint firstItem="aHO-5c-oeV" firstAttribute="centerY" secondItem="NjY-wX-AaY" secondAttribute="centerY" id="xn3-gg-20O"/>
+                            <constraint firstItem="4ky-Fb-HYH" firstAttribute="bottom" secondItem="msc-mU-R4K" secondAttribute="bottom" id="5Ji-9H-WD4"/>
+                            <constraint firstItem="msc-mU-R4K" firstAttribute="trailing" secondItem="4ky-Fb-HYH" secondAttribute="trailing" id="9LA-Yi-W5s"/>
+                            <constraint firstItem="4ky-Fb-HYH" firstAttribute="leading" secondItem="msc-mU-R4K" secondAttribute="leading" id="GP7-SW-LSC"/>
+                            <constraint firstItem="4ky-Fb-HYH" firstAttribute="top" secondItem="msc-mU-R4K" secondAttribute="top" id="fd8-qJ-xW7"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="Pbc-QV-k4M"/>
+                        <viewLayoutGuide key="safeArea" id="msc-mU-R4K"/>
                     </view>
                     <size key="freeformSize" width="375" height="375"/>
                     <connections>
-                        <outlet property="label" destination="aHO-5c-oeV" id="NJS-MS-B3I"/>
+                        <outlet property="clockBackground" destination="j26-kg-gXo" id="WjG-Tk-irt"/>
+                        <outlet property="clockNeedle" destination="4ky-Fb-HYH" id="LWx-6j-ABq"/>
+                        <outlet property="timeLabel" destination="ecO-Fk-BI3" id="iNd-M1-u08"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7H6-ZP-H8r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1595" y="421"/>
+            <point key="canvasLocation" x="1594.4000000000001" y="419.64017991004499"/>
         </scene>
     </scenes>
 </document>

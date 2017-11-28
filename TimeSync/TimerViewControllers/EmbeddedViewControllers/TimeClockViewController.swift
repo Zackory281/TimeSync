@@ -7,19 +7,25 @@
 //
 
 import UIKit
+import SpriteKit
 
 class TimeClockViewController: UIViewController {
-
-    @IBOutlet weak var label: UILabel?
+    
+    @IBOutlet var clockBackground: TimeClockView!
+    @IBOutlet weak var clockNeedle: UIView?
+    @IBOutlet weak var timeLabel: UILabel!
     
     func changeClockTime(time:Double){
-        label?.text = String(time)
+        UIView.animate(withDuration: 0.1) {
+            self.clockNeedle?.transform = CGAffineTransform(rotationAngle: CGFloat(time.remainder(dividingBy: 60.0) / 30.0 * Double.pi))
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        clockNeedle?.backgroundColor = UIColor.clear
+        //NSLayoutConstraint(item: timeLabel, attribute: .centerY, relatedBy: .equal, toItem: clockBackground, attribute: .centerY, multiplier: 1.3, constant: 0.0).isActive = false
+        //view.addConstraint()
     }
 
 }

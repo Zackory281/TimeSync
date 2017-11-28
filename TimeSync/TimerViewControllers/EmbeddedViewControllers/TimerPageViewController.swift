@@ -64,16 +64,16 @@ class TimerPageViewController: UIPageViewController, UIPageViewControllerDelegat
                 //scrollView.frame = UIScreen.main.bounds
             }
         }
+        for view in self.view.subviews {
+            if view is UIScrollView {
+                view.frame = UIScreen.main.bounds
+            } else if view is UIPageControl {
+                view.backgroundColor = UIColor.clear
+            }
+        }
     }
     
     override func viewDidLayoutSubviews() {
-        var height:CGFloat!
-        for view in self.view.subviews {
-            if view is UIScrollView {
-                height = view.frame.maxY
-                //scrollView.frame = UIScreen.main.bounds
-            }
-        }
         /*pageControl = UIPageControl(frame: CGRect(x: 0, y: 100 - 50, width: 100, height: 50))//UIScreen.main.bounds.width
         pageControl.pageIndicatorTintColor = UIColor.white
         pageControl.currentPageIndicatorTintColor = UIColor.black
