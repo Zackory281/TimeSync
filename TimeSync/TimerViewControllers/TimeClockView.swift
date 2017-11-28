@@ -32,7 +32,6 @@ class TimeClockView: UIScrollView {
             let tickEndRatio:CGFloat
             switch i {
             case let i where i % (5 * 3) == 0:
-                print(i)
                 tickStartRatio = BIG_TICK_MARK_STARTING_RATIO
                 tickEndRatio = BIG_TICK_MARK_ENDING_RATIO
                 let paragraphStyle = NSMutableParagraphStyle()

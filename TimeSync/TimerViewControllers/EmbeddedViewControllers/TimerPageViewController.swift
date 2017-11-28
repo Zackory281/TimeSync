@@ -67,8 +67,6 @@ class TimerPageViewController: UIPageViewController, UIPageViewControllerDelegat
         for view in self.view.subviews {
             if view is UIScrollView {
                 view.frame = UIScreen.main.bounds
-            } else if view is UIPageControl {
-                view.backgroundColor = UIColor.clear
             }
         }
     }

@@ -109,6 +109,15 @@
                                     <action selector="toggle:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GeJ-co-7ho"/>
                                 </connections>
                             </button>
+                            <visualEffectView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eom-4Q-sCj">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="SNV-o0-rb3">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -130,11 +139,19 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="blurEffectView" destination="Eom-4Q-sCj" id="IGO-Dw-TfW"/>
                         <outlet property="leftButton" destination="MOP-uz-jX7" id="cMZ-gF-voM"/>
                         <outlet property="rightButton" destination="aeL-yh-74K" id="jHG-39-Tse"/>
+                        <outlet property="settingsView" destination="DkR-kl-QiD" id="Mmp-Fp-Wmt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="DkR-kl-QiD">
+                    <rect key="frame" x="0.0" y="0.0" width="259" height="421"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="Cvm-il-19B"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="132.68365817091455"/>
         </scene>
@@ -187,24 +204,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecO-Fk-BI3">
-                                <rect key="frame" x="166" y="177" width="42" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="42" id="aDG-N6-Dnq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ky-Fb-HYH" customClass="TimeNeedleView" customModule="TimeSync" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecO-Fk-BI3">
+                                <rect key="frame" x="112" y="177" width="150" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="nn8-zf-O8M"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="4ky-Fb-HYH" firstAttribute="bottom" secondItem="msc-mU-R4K" secondAttribute="bottom" id="5Ji-9H-WD4"/>
                             <constraint firstItem="msc-mU-R4K" firstAttribute="trailing" secondItem="4ky-Fb-HYH" secondAttribute="trailing" id="9LA-Yi-W5s"/>
+                            <constraint firstItem="ecO-Fk-BI3" firstAttribute="centerX" secondItem="j26-kg-gXo" secondAttribute="centerX" id="EBB-e5-VBm"/>
                             <constraint firstItem="4ky-Fb-HYH" firstAttribute="leading" secondItem="msc-mU-R4K" secondAttribute="leading" id="GP7-SW-LSC"/>
                             <constraint firstItem="4ky-Fb-HYH" firstAttribute="top" secondItem="msc-mU-R4K" secondAttribute="top" id="fd8-qJ-xW7"/>
                         </constraints>

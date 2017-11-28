@@ -14,12 +14,25 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
     var tableView:UITableView?
     var connection:Connection?
     var pageViewController:TimerPageViewController?
+    var blurEffect:UIBlurEffect?
+    
+    @IBOutlet weak var blurEffectView: UIVisualEffectView!
+    @IBOutlet var settingsView: UIView!
     
     @IBAction func connectToFirebase(_ sender: Any) {
         
-        //let ref = Database.database().reference()
-        //ref.child("pussy/da").childByAutoId().setValue("hi")
-        //pageViewController?.changeLabelTime(time: "pussy!")
+    }
+    
+    func loadSettings(){
+        self.view.addSubview(settingsView)
+        settingsView.center = self.view.center
+        settingsView.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
+        settingsView.alpha = 0
+        UIView.animate(withDuration: 0.5){
+            self.settingsView.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            self.settingsView.alpha = 1
+            self.blurEffectView.effect = self.blurEffect!
+        }
     }
     
     func reloadTable() {
@@ -64,6 +77,7 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
     var timer:TimerModel?
     
     @IBAction func toggle(_ sender: UIButton) {
+        loadSettings()
         let text = String(describing: sender.titleLabel!.text!)
         timer!.act(action: (actionLabel[text])!, time: Date())
         var lapAva:Bool = true
@@ -92,8 +106,13 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
         super.viewDidLoad()
         timer = TimerModel(delegate:self)
         tableView?.dataSource = self
-        
+        blurEffect = blurEffectView.effect as? UIBlurEffect
+        blurEffectView.effect = nil
         //connection = Connection()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        timer?.updateTime()
     }
     
     override func didReceiveMemoryWarning() {

@@ -79,13 +79,13 @@ class TimerModel{
     
     var elapsedTime:Double{
         get{
-            return Date().timeIntervalSince(self.startTime) + offsetTime
+            return offsetTime + (isTiming ? Date().timeIntervalSince(self.startTime):0.0)
         }
     }
     var offsetTime:Double = 0.0
     var startTime:Date = Date()
-    var stopTime:Date = Date()
     var initiateTime:Date = Date()
+    var isTiming = false
     var timer:Timer?
     var actorName:String
     var latestAction:TimerActions?
@@ -117,12 +117,13 @@ class TimerModel{
     func start(){
         timer = getTimer()
         startTime = initiateTime
+        isTiming = true
     }
     
     func stop(){
         timer?.invalidate()
-        stopTime = initiateTime
         offsetTime = elapsedTime
+        isTiming = false
     }
     
     func resume(){
@@ -134,7 +135,8 @@ class TimerModel{
     
     func reset(){
         offsetTime = 0
-        self.delegate.updateTime(time: getFormattedString(interval:0))
+        isTiming = false
+        updateTime()
     }
     
     init(delegate:TimerDelegate){
