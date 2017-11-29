@@ -22,7 +22,7 @@ class TimerViewController: UIViewController, TimerDelegate{
     
     @IBAction func panGesture(_ sender: UIScreenEdgePanGestureRecognizer) {
         let x = sender.location(in: self.view).x
-        let xr = x / self.view.bounds.width
+        let xr = x / self.view.bounds.width//
         let v = Double(sender.velocity(in: self.view).x)
         switch sender.state {
         case .began:
