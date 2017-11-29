@@ -167,6 +167,7 @@
 		F273C4911FB7E4EC00A72A1C /* TimeSync */ = {
 			isa = PBXGroup;
 			children = (
+				F299A3BF1FCE864D00E08F84 /* Views */,
 				F273C4C21FB7E63200A72A1C /* TimerViewControllers */,
 				F269896B1FC202B500AA0FF3 /* TimerModels */,
 				F273C4921FB7E4EC00A72A1C /* AppDelegate.swift */,
@@ -203,10 +204,17 @@
 			children = (
 				F2C592CA1FCE55B0004668E5 /* Table View */,
 				F2AAECF81FC1486900DF2B4C /* EmbeddedViewControllers */,
-				F23F44D61FC33E3200486773 /* TimeClockView.swift */,
 				F273C4C01FB7E62500A72A1C /* TimerViewController.swift */,
 			);
 			path = TimerViewControllers;
+			sourceTree = "<group>";
+		};
+		F299A3BF1FCE864D00E08F84 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F23F44D61FC33E3200486773 /* TimeClockView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F2AAECF81FC1486900DF2B4C /* EmbeddedViewControllers */ = {

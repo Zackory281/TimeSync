@@ -20,16 +20,38 @@ class TimerViewController: UIViewController, TimerDelegate{
     @IBOutlet weak var blurEffectView: UIVisualEffectView!
     @IBOutlet var settingsView: UIView!
     
-    @IBAction func connectToFirebase(_ sender: Any) {
-        
+    @IBAction func panGesture(_ sender: UIScreenEdgePanGestureRecognizer) {
+        let x = sender.location(in: self.view).x
+        let xr = x / self.view.bounds.width
+        let v = Double(sender.velocity(in: self.view).x)
+        switch sender.state {
+        case .began:
+            loadSettings()
+        case .changed:
+            UIView.animate(withDuration: 0.1){
+                self.settingsView.center = self.view.center
+                self.settingsView.center.x = x - self.settingsView.bounds.width / 2.0
+                self.settingsView.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+                self.settingsView.alpha = xr
+                self.blurEffectView.effect = self.blurEffect!
+            }
+        case .ended:
+            UIView.animate(withDuration: 0.5){
+                self.settingsView.center = self.view.center
+                self.settingsView.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+                self.settingsView.alpha = 1
+                self.blurEffectView.effect = self.blurEffect!
+            }
+        default:
+            break;
+        }
     }
     
     func loadSettings(){
-        /*self.view.addSubview(settingsView)
         settingsView.center = self.view.center
-        settingsView.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
+        //settingsView.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
         settingsView.alpha = 0
-        UIView.animate(withDuration: 0.5){
+        /*UIView.animate(withDuration: 0.5){
             self.settingsView.transform = CGAffineTransform.init(scaleX: 1, y: 1)
             self.settingsView.alpha = 1
             self.blurEffectView.effect = self.blurEffect!
@@ -58,7 +80,6 @@ class TimerViewController: UIViewController, TimerDelegate{
     var timer:TimerModel?
     
     @IBAction func toggle(_ sender: UIButton) {
-        loadSettings()
         let text = String(describing: sender.titleLabel!.text!)
         timer!.act(action: (actionLabel[text])!, time: Date())
         var lapAva:Bool = true
@@ -86,10 +107,11 @@ class TimerViewController: UIViewController, TimerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         timer = TimerModel(delegate:self)
+        timeTableViewController!.timer = timer
         blurEffect = blurEffectView.effect as? UIBlurEffect
         blurEffectView.effect = nil
-        timeTableViewController?.timer = timer
-        //connection = Connection()
+        settingsView.alpha = 0
+        self.view.addSubview(settingsView)
     }
     
     override func viewDidLayoutSubviews() {

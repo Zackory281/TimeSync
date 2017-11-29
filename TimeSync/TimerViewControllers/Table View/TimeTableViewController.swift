@@ -11,12 +11,9 @@ import UIKit
 class TimeTableViewController: UITableViewController {
 
     var timer:TimerModel?
-    @IBOutlet weak var table: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView = table
-        //timer = TimerViewController.
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -40,6 +37,7 @@ class TimeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "timeCell")! as! TimeTableViewCell
+        guard timer != nil else{ return cell }
         let lap = (timer?.userActions[indexPath.row])!
         let string = NSMutableAttributedString(string: lap.str)
         string.addAttribute(.kern, value: 1.0, range: NSRange(location: 0, length: lap.str.count))
