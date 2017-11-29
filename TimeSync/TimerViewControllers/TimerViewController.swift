@@ -9,11 +9,12 @@
 import UIKit
 import Firebase
 
-class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate{
+class TimerViewController: UIViewController, TimerDelegate{
     
     var tableView:UITableView?
     var connection:Connection?
     var pageViewController:TimerPageViewController?
+    var timeTableViewController:TimeTableViewController?
     var blurEffect:UIBlurEffect?
     
     @IBOutlet weak var blurEffectView: UIVisualEffectView!
@@ -24,7 +25,7 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
     }
     
     func loadSettings(){
-        self.view.addSubview(settingsView)
+        /*self.view.addSubview(settingsView)
         settingsView.center = self.view.center
         settingsView.transform = CGAffineTransform.init(scaleX: 1.5, y: 1.5)
         settingsView.alpha = 0
@@ -32,12 +33,12 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
             self.settingsView.transform = CGAffineTransform.init(scaleX: 1, y: 1)
             self.settingsView.alpha = 1
             self.blurEffectView.effect = self.blurEffect!
-        }
+        }*/
     }
     
     func reloadTable() {
-        tableView?.reloadData()
-        tableView?.endUpdates()
+        timeTableViewController?.tableView.reloadData()
+        timeTableViewController?.tableView.endUpdates()
     }
     
     func enableLap(enabled: Bool) {
@@ -50,26 +51,6 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
     
     func updateTime(time: Double) {
         pageViewController?.changeLabelTime(time: time)
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.tableView = tableView
-        return timer?.userActions.count ?? 3
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "timeCell")! as! TimeTableViewCell
-        let lap = (timer?.userActions[indexPath.row])!
-        let string = NSMutableAttributedString(string: lap.str)
-        string.addAttribute(.kern, value: 1.0, range: NSRange(location: 0, length: lap.str.count))
-        cell.timeLabel!.attributedText = string
-        cell.timeLabel!.textColor = lap.lapColor
-        cell.nameLabel!.text = lap.user
-        return cell
     }
     
     @IBOutlet weak var leftButton: UIButton!
@@ -105,9 +86,9 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         timer = TimerModel(delegate:self)
-        tableView?.dataSource = self
         blurEffect = blurEffectView.effect as? UIBlurEffect
         blurEffectView.effect = nil
+        timeTableViewController?.timer = timer
         //connection = Connection()
     }
     
@@ -126,6 +107,8 @@ class TimerViewController: UIViewController,UITableViewDataSource, TimerDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let vc = segue.destination as? TimerPageViewController{
             pageViewController = vc
+        }else if let vc = segue.destination as? TimeTableViewController{
+            timeTableViewController = vc
         }
     }
 }
