@@ -16,7 +16,6 @@ class TimeClockViewController: UIViewController {
     @IBOutlet weak var timeLabel: UILabel?
     
     func changeClockTime(time:Double){
-        //guard !(self.clockNeedle?.isHidden)! else {return}
         UIView.animate(withDuration: 0.1) {
             self.clockNeedle?.transform = CGAffineTransform(rotationAngle: CGFloat(time.remainder(dividingBy: 60.0) / 30.0 * Double.pi))
         }

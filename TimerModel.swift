@@ -39,6 +39,14 @@ let actionLabelToString:[TimerActions:String] = [
     TimerActions.RESET  : "reset" ,
 ]
 
+let actionLabelToColor:[TimerActions:UIColor] = [
+    TimerActions.START  : UIColor.green ,
+    TimerActions.STOP   : UIColor.red ,
+    TimerActions.RESUME : UIColor.green ,
+    TimerActions.LAP    : UIColor.blue  ,
+    TimerActions.RESET  : UIColor.darkGray ,
+]
+
 let actions:[TimerActions : (TimerModel)->()->Void] = [
     TimerActions.START : TimerModel.start,
     TimerActions.STOP : TimerModel.stop,
@@ -55,12 +63,16 @@ struct Action {
     let str:String
     let user:String
     let userAction:TimerActions
-    var lapColor:UIColor = UIColor.black
+    let timeInitiated:Date
+    var lapColor:UIColor{
+        return actionLabelToColor[userAction]!
+    }
     
-    init(action: TimerActions,interval:Double,name:String) {
+    init(action: TimerActions,initiated: Date,interval:Double,name:String) {
         self.interval = interval
         self.user = name
         self.userAction = action
+        self.timeInitiated = initiated
         str = getFormattedString(interval: interval)
     }
     
@@ -79,7 +91,7 @@ class TimerModel{
     
     var elapsedTime:Double{
         get{
-            return offsetTime + (isTiming ? Date().timeIntervalSince(self.startTime):0.0)
+            return isTiming ? offsetTime + (Date().timeIntervalSince(self.startTime)) : userActions.first?.interval ?? 0.0
         }
     }
     var offsetTime:Double = 0.0
@@ -88,30 +100,28 @@ class TimerModel{
     var isTiming = false
     var timer:Timer?
     var actorName:String
-    var latestAction:TimerActions?
+    var latestAction:TimerActions = TimerActions.STOP
     var database:DatabaseReference
+    var dateformatter:DateFormatter!
     
     func act(action:TimerActions, time:Date, name:String){
-        if let act = latestAction{
-            if act != action || act == TimerActions.LAP{
-                initiateTime = time
-                self.actorName = name
-                userActions.insert(Action(action:action, interval: elapsedTime,name: actorName), at: 0)
-                actions[action]?(self)()
-            }
-        }else{
+        let toActAction = Action(action:action, initiated: time, interval: elapsedTime,name: actorName)
+        if latestAction != action || action == TimerActions.LAP{
             initiateTime = time
             self.actorName = name
-            userActions.insert(Action(action:action, interval: elapsedTime,name: actorName), at: 0)
-            actions[action]?(self)()
+            writeAction(action: toActAction)
         }
         latestAction = action
-        writeAction(action: Action(action:action, interval: elapsedTime,name: actorName))
-        delegate.reloadTable()
     }
     
-    func act(action:TimerActions, time:Date){
-        act(action: action, time: time, name:USERNAME)
+    func act(action:TimerActions, timeInitiated:Date){
+        act(action: action, time: Date(), name:USERNAME)
+    }
+    
+    func processAction(action:Action){
+        initiateTime = action.timeInitiated
+        actions[action.userAction]?(self)()
+        delegate.buttonSetting(mode: actionLabelToString[action.userAction]!)
     }
     
     func start(){
@@ -124,6 +134,7 @@ class TimerModel{
         timer?.invalidate()
         offsetTime = elapsedTime
         isTiming = false
+        //updateEndTime(time: userActions.last!.interval)
     }
     
     func resume(){
@@ -144,17 +155,27 @@ class TimerModel{
         delegate.enableLap(enabled: true)
         actorName = USERNAME
         database = Database.database().reference()
-        database.observe(.childAdded, with: { (snapshot) -> Void in
-            //self.comments.append(snapshot)
-            //self.tableView.insertRows(at: [IndexPath(row: self.comments.count-1, section: self.kSectionComments)], with: UITableViewRowAnimation.automatic)
+        dateformatter = DateFormatter()
+        dateformatter.dateFormat = "EEE, dd MMM yyyy hh:mm:ss +zzzz"
+        database.child(ROOMID).observe(.childChanged, with: { (snapshot) -> Void in
             let postDict = snapshot.value as? [String : AnyObject] ?? [:]
-            //print("the changed child was \(postDict["user"])")
+            let cmd:String = postDict["cmd"] as! String
+            let arr = cmd.components(separatedBy: "|")
+            let actionToAdd = Action(action:actionLabel[arr[1]]!, initiated: self.dateformatter.date(from: arr[3])!, interval: Double(arr[2])!,name: arr[0])
+            self.userActions.insert(actionToAdd, at: 0)
+            self.processAction(action: actionToAdd)
+            self.delegate.reloadTable()
         })
     }
     
     @objc func updateTime(){
         self.delegate.updateTime(time: elapsedTime)
         self.delegate.updateTime(time: getFormattedString(interval:elapsedTime))
+    }
+    
+    func updateEndTime(time:Double){
+        self.delegate.updateTime(time: 10)
+        self.delegate.updateTime(time: getFormattedString(interval:time))
     }
     
     func getTimer() -> Timer{
@@ -165,9 +186,15 @@ class TimerModel{
     
     func writeAction(action:Action){
         let roomReference = database.child(ROOMID).child("lastAction")
-        roomReference.child("time").setValue(action.interval)
-        roomReference.child("user").setValue(action.user)
-        roomReference.child("action").setValue(actionLabelToString[action.userAction])
+        var interval = action.interval//\(action.interval)
+        if action.userAction == .RESET {
+            interval = 0.0
+        }
+        let actionString:NSString = "\(action.user)|\(actionLabelToString[action.userAction]!)|\(interval)|\(dateformatter.string(from: action.timeInitiated))" as NSString
+        roomReference.child("cmd").setValue("\(action.user)|\(actionLabelToString[action.userAction]!)|\(interval)|\(dateformatter.string(from: action.timeInitiated))")
+        //roomReference.child("history").setValue("\("fdas")~\(actionString)")
+        //roomReference.child("user").setValue(action.user)
+        //roomReference.child("action").setValue(actionLabelToString[action.userAction])
         //roomReference.child("time").setValue(action)
     }
 }
@@ -176,6 +203,7 @@ protocol TimerDelegate {
     func updateTime(time:String);
     func updateTime(time:Double);
     func enableLap(enabled:Bool);
+    func buttonSetting(mode:String);
     func reloadTable();
 }
 

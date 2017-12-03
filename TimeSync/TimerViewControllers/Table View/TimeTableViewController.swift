@@ -39,7 +39,12 @@ class TimeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "timeCell")! as! TimeTableViewCell
         guard timer != nil else{ return cell }
         let lap = (timer?.userActions[indexPath.row])!
-        let string = NSMutableAttributedString(string: lap.str)
+        var string = NSMutableAttributedString(string: lap.str)
+        if lap.userAction == .RESET {
+            string = NSMutableAttributedString(string: "reset")
+        }else if lap.userAction == .START {
+            string = NSMutableAttributedString(string: "start")
+        }
         string.addAttribute(.kern, value: 1.0, range: NSRange(location: 0, length: lap.str.count))
         cell.timeLabel!.attributedText = string
         cell.timeLabel!.textColor = lap.lapColor

@@ -19,7 +19,6 @@ class Connection {
     init() {
         Auth.auth().signInAnonymously(completion: {(user, error) in
             if let err = error {
-                print(err.localizedDescription)
                 return
             }
             self.user = user

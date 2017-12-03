@@ -27,6 +27,8 @@
 		F2AAECF71FC0B23800DF2B4C /* TimerPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AAECF61FC0B23800DF2B4C /* TimerPageViewController.swift */; };
 		F2AAECFA1FC1488B00DF2B4C /* TimeLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AAECF91FC1488B00DF2B4C /* TimeLabelViewController.swift */; };
 		F2C592C91FCE55A2004668E5 /* TimeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2C592C81FCE55A2004668E5 /* TimeTableViewController.swift */; };
+		F2FDB0241FD3826400A47A7D /* UIPlaceHolderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FDB0231FD3826400A47A7D /* UIPlaceHolderTextField.swift */; };
+		F2FDB0261FD3A24200A47A7D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FDB0251FD3A24200A47A7D /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		F2AAECF61FC0B23800DF2B4C /* TimerPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPageViewController.swift; sourceTree = "<group>"; };
 		F2AAECF91FC1488B00DF2B4C /* TimeLabelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLabelViewController.swift; sourceTree = "<group>"; };
 		F2C592C81FCE55A2004668E5 /* TimeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableViewController.swift; sourceTree = "<group>"; };
+		F2FDB0231FD3826400A47A7D /* UIPlaceHolderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIPlaceHolderTextField.swift; sourceTree = "<group>"; };
+		F2FDB0251FD3A24200A47A7D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		FC9863336157F6FE2D7D973E /* Pods-TimeSyncUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TimeSyncUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TimeSyncUITests/Pods-TimeSyncUITests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +171,7 @@
 		F273C4911FB7E4EC00A72A1C /* TimeSync */ = {
 			isa = PBXGroup;
 			children = (
+				F2FDB0221FD3822800A47A7D /* components */,
 				F299A3BF1FCE864D00E08F84 /* Views */,
 				F273C4C21FB7E63200A72A1C /* TimerViewControllers */,
 				F269896B1FC202B500AA0FF3 /* TimerModels */,
@@ -205,6 +210,7 @@
 				F2C592CA1FCE55B0004668E5 /* Table View */,
 				F2AAECF81FC1486900DF2B4C /* EmbeddedViewControllers */,
 				F273C4C01FB7E62500A72A1C /* TimerViewController.swift */,
+				F2FDB0251FD3A24200A47A7D /* SettingsViewController.swift */,
 			);
 			path = TimerViewControllers;
 			sourceTree = "<group>";
@@ -234,6 +240,14 @@
 				F2C592C81FCE55A2004668E5 /* TimeTableViewController.swift */,
 			);
 			path = "Table View";
+			sourceTree = "<group>";
+		};
+		F2FDB0221FD3822800A47A7D /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F2FDB0231FD3826400A47A7D /* UIPlaceHolderTextField.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -537,6 +551,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F2AAECF71FC0B23800DF2B4C /* TimerPageViewController.swift in Sources */,
+				F2FDB0241FD3826400A47A7D /* UIPlaceHolderTextField.swift in Sources */,
 				F269896A1FC2027700AA0FF3 /* TimeClockViewController.swift in Sources */,
 				F273C4951FB7E4EC00A72A1C /* ViewController.swift in Sources */,
 				F2A863541FBFFF1900279B8A /* ConnectionModel.swift in Sources */,
@@ -545,6 +560,7 @@
 				F273C4931FB7E4EC00A72A1C /* AppDelegate.swift in Sources */,
 				F2AAECFA1FC1488B00DF2B4C /* TimeLabelViewController.swift in Sources */,
 				F2C592C91FCE55A2004668E5 /* TimeTableViewController.swift in Sources */,
+				F2FDB0261FD3A24200A47A7D /* SettingsViewController.swift in Sources */,
 				F23F44D71FC33E3200486773 /* TimeClockView.swift in Sources */,
 				F2A1646E1FB941EC007F8C31 /* TimeTableViewCell.swift in Sources */,
 			);
